@@ -15,14 +15,14 @@ if [ -z "${template}" ]; then
 fi
 
 repo_urlname=$(basename -s .git `git config --get remote.origin.url`)
-repo_name=$(basename -s .git `git config --get remote.origin.url` | tr '-' '_' | tr '[:upper:]' '[:lower:]')
-repo_owner=$(git config --get remote.origin.url | awk -F ':' '{print $2}' | awk -F '/' '{print $1}')
-echo "Repo name: ${repo_name}"
-echo "Repo owner: ${repo_owner}"
+{{.ProjectName}}=$(basename -s .git `git config --get remote.origin.url` | tr '-' '_' | tr '[:upper:]' '[:lower:]')
+{{.RepositoryOwner}}=$(git config --get remote.origin.url | awk -F ':' '{print $2}' | awk -F '/' '{print $1}')
+echo "Repo name: ${{{.ProjectName}}}"
+echo "Repo owner: ${{{.RepositoryOwner}}}"
 echo "Repo urlname: ${repo_urlname}"
 
 if [ -f ".github/workflows/rename_project.yml" ]; then
-    .github/rename_project.sh -a "${repo_owner}" -n "${repo_name}" -u "${repo_urlname}" -d "Awesome ${repo_name} created by ${repo_owner}"
+    .github/rename_project.sh -a "${{{.RepositoryOwner}}}" -n "${{{.ProjectName}}}" -u "${repo_urlname}" -d "Awesome ${{{.ProjectName}}} created by ${{{.RepositoryOwner}}}"
 fi
 
 function download_template {
@@ -60,7 +60,7 @@ else
 fi
 
 echo "Applying ${template} template to this project"}
-./.github/templates/${template}/apply.sh -a "${repo_owner}" -n "${repo_name}" -u "${repo_urlname}" -d "Awesome ${repo_name} created by ${repo_owner}"
+./.github/templates/${template}/apply.sh -a "${{{.RepositoryOwner}}}" -n "${{{.ProjectName}}}" -u "${repo_urlname}" -d "Awesome ${{{.ProjectName}}} created by ${{{.RepositoryOwner}}}"
 
 # echo "Removing temporary template files"
 # rm -rf .github/templates/${template}

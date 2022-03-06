@@ -1,0 +1,20 @@
+variables:
+  - name: ProjectName
+    description: Name of the project
+  - name: DefaultBranch
+    description: Name of the default branch
+    default: main
+  - name: GithubUsername
+    description: Github handle 
+  - name: PatreonUsername
+    description: Username of your Patron account
+  - name: OpenCollectiveUsername
+    description: Username of your Open Collective account
+  - name: KoFiUsername
+    description: Username of your Ko-Fi account
+  - name: ProjectDescription
+    description: Brief description of your project
+  - name: RepositoryOwner
+    description: Repository owner (or organization)
+
+
