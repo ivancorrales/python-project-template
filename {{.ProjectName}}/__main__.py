@@ -20,7 +20,7 @@ def main() -> None:  # pragma: no cover
         * Run an application (Flask, FastAPI, Django, etc.)
     """
     parser = argparse.ArgumentParser(
-        description="{{.ProjectName}}.",
+        description="{{.ProjectDescription}}.",
         epilog="Enjoy the {{.ProjectName}} functionality!",
     )
     # This is required positional argument
@@ -28,7 +28,7 @@ def main() -> None:  # pragma: no cover
         "name",
         type=str,
         help="The username",
-        default="author_name",
+        default="{{.GithubUsername}}",
     )
     # This is optional named argument
     parser.add_argument(
